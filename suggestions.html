@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Mihir • Feedback</title>
+    <title>Mihir • Suggestions</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet"
@@ -79,6 +79,20 @@
             transform:translateY(-2px);
         }
 
+        .actions {
+            display:flex;
+            gap:10px;
+            margin-top:10px;
+        }
+
+        .clear-btn {
+            background:rgba(255,0,0,0.25);
+        }
+
+        .clear-btn:hover {
+            background:rgba(255,0,0,0.4);
+        }
+
         .list {
             margin-top:18px;
             max-height:150px;
@@ -122,10 +136,14 @@
 </video>
 
 <div class="box">
-    <div class="title">FEEDBACK 🖤</div>
+    <div class="title">Give Suggestions</div>
 
     <textarea id="input" placeholder="write something..."></textarea>
-    <button onclick="submitMsg()">send</button>
+
+    <div class="actions">
+        <button onclick="submitMsg()">send</button>
+        <button class="clear-btn" onclick="clearMessages()">clear</button>
+    </div>
     
     <div class="list" id="messages"></div>
 
@@ -156,6 +174,14 @@ function submitMsg(){
     localStorage.setItem(storageKey, JSON.stringify(messages));
     document.getElementById("input").value = "";
     render();
+}
+
+function clearMessages(){
+    if(confirm("Delete all messages? 🗑️")) {
+        messages = [];
+        localStorage.removeItem(storageKey);
+        render();
+    }
 }
 
 render();
