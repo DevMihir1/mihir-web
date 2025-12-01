@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Mihir • Chat</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+    background:black;
+    color:white;
+    font-family:"Inter", sans-serif;
+    height:100vh;
+    width:100vw;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    opacity:0;
+    transition:1s ease;
+}
+
+/* Background video */
+#bg {
+    position:fixed;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:grayscale(100%) brightness(.55);
+    z-index:-2;
+}
+
+/* Main Card */
+.box {
+    width:90%;
+    max-width:600px;
+    padding:28px;
+    border-radius:22px;
+    background:rgba(0,0,0,0.45);
+    backdrop-filter:blur(22px);
+    border:1px solid rgba(255,255,255,0.08);
+    box-shadow:0 0 45px rgba(255,255,255,0.06);
+    animation:fadeUp .7s ease forwards;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    position:relative;
+}
+
+/* Animated neon border */
+.box::before {
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:22px;
+    padding:2px;
+    background:linear-gradient(140deg,
+    rgba(255,255,255,0.05),
+    rgba(255,255,255,0.35),
+    rgba(255,255,255,0.05));
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite:exclude;
+    pointer-events:none;
+    animation:borderGlow 7s infinite linear;
+}
+
+/* Title */
+.title {
+    text-align:center;
+    font-family:"IBM Plex Mono";
+    letter-spacing:8px;
+    font-size:1rem;
+    opacity:0;
+    animation:titleFade 1.5s ease forwards;
+    color:#ffffffd8;
+    text-transform:uppercase;
+}
+
+/* Chat box wrapper */
+.chat-wrapper {
+    width:100%;
+    height:420px;
+    background:black;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.12);
+    position:relative;
+    animation:fadeIn .9s ease forwards;
+}
+
+/* Tinted overlay (NOT blurred anymore) */
+.chat-wrapper::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.15);
+    pointer-events:none;
+}
+
+/* Fake typing indicator */
+.typing-text {
+    font-family:"IBM Plex Mono";
+    text-align:center;
+    font-size:0.75rem;
+    letter-spacing:3px;
+    color:#b3b3b3;
+    opacity:0;
+    animation:typingBlink 3s infinite ease-in-out;
+}
+
+/* Back button */
+.back {
+    font-size:1.8rem;
+    opacity:.4;
+    cursor:pointer;
+    transition:.3s;
+    text-align:center;
+}
+
+.back:hover {
+    opacity:1;
+    transform:translateY(-4px);
+}
+
+/* Animations */
+@keyframes fadeUp {
+    from { transform:translateY(40px); opacity:0; }
+    to { transform:translateY(0); opacity:1; }
+}
+
+@keyframes fadeIn {
+    from { opacity:0; transform:scale(.97); }
+    to { opacity:1; transform:scale(1); }
+}
+
+@keyframes titleFade {
+    0% { opacity:0; transform:translateY(15px); }
+    100% { opacity:0.9; transform:translateY(0); }
+}
+
+@keyframes borderGlow {
+    0% { filter:hue-rotate(0deg); }
+    100% { filter:hue-rotate(360deg); }
+}
+
+@keyframes typingBlink {
+    0%,100% { opacity:0; }
+    50% { opacity:0.45; }
+}
+
+/* Mobile */
+@media(max-width:600px){
+    .chat-wrapper { height:350px; }
+    .title { font-size:.85rem; letter-spacing:4px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background -->
+<video id="bg" autoplay muted loop playsinline>
+    <source src="assets/bg.mp4" type="video/mp4">
+</video>
+
+<!-- Chat UI -->
+<div class="box">
+    <div class="title">LIVE CHAT 🖤</div>
+
+    <div class="chat-wrapper">
+        <iframe 
+        src="https://www5.cbox.ws/box/?boxid=959935&boxtag=V0Gzp3"
+        width="100%" height="100%" 
+        frameborder="0" allowtransparency="yes" scrolling="auto"></iframe>
+    </div>
+
+    <div class="typing-text">someone is typing . . .</div>
+
+    <div class="back" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    document.body.style.opacity = "1";
+});
+
+function goBack(){
+    document.body.style.opacity = "0";
+    setTimeout(() => {
+        window.location.href = "index.html";
+    }, 400);
+}
+</script>
+
+</body>
+</html>
