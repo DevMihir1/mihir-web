@@ -144,3 +144,116 @@ body{
     #overlay p{font-size:15px;letter-spacing:4px;}
     #volume-slider{width:110px;}
 }
+
+/* --- MUSIC PAGE --- */
+
+.music-page{
+    background:black;
+    color:white;
+    font-family:"Inter",sans-serif;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+.music-card{
+    position:relative;
+    background:rgba(0,0,0,0.55);
+    backdrop-filter:blur(18px);
+    border-radius:22px;
+    padding:26px 26px 22px;
+    width:90%;
+    max-width:420px;
+    border:1px solid rgba(255,255,255,0.08);
+    box-shadow:0 0 40px rgba(0,0,0,0.8);
+}
+
+.music-title{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.9rem;
+    letter-spacing:6px;
+    text-align:center;
+    text-transform:uppercase;
+    opacity:0.9;
+}
+
+.music-sub{
+    margin-top:10px;
+    text-align:center;
+    font-size:0.8rem;
+    color:#cfcfcf;
+    opacity:0.8;
+}
+
+.music-section{
+    margin-top:16px;
+}
+
+.music-section h2{
+    font-size:0.8rem;
+    letter-spacing:3px;
+    font-family:"IBM Plex Mono", monospace;
+    opacity:0.7;
+    margin-bottom:6px;
+}
+
+.music-section ul{
+    list-style:none;
+    font-size:0.85rem;
+    color:#e0e0e0;
+    opacity:0.9;
+}
+
+.music-section li{
+    margin-bottom:4px;
+}
+
+/* links / buttons at bottom */
+.music-links{
+    margin-top:18px;
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.music-links a,
+.music-links button{
+    flex:1;
+    border:none;
+    outline:none;
+    font-size:0.8rem;
+    padding:8px 10px;
+    border-radius:999px;
+    background:rgba(255,255,255,0.08);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    cursor:pointer;
+    text-decoration:none;
+    transition:0.2s;
+}
+
+.music-links a:hover,
+.music-links button:hover{
+    background:rgba(255,255,255,0.16);
+    transform:translateY(-2px);
+}
+
+.music-links i{
+    font-size:0.9rem;
+}
+
+/* mobile tweak */
+@media(max-width:600px){
+    .music-card{
+        padding:22px 18px 18px;
+    }
+    .music-title{
+        letter-spacing:4px;
+        font-size:0.8rem;
+    }
+}

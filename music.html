@@ -1,29 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Mihir • Music</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body class="page">
+    <meta charset="UTF-8">
+    <title>Mihir • Music</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- main styles + icons -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="music-page">
+
+<!-- same bg video -->
 <video id="bg" autoplay muted loop playsinline>
     <source src="assets/bg.mp4" type="video/mp4">
 </video>
 
-<div class="page-container">
-    <h2 class="page-title">NOW PLAYING 🎧</h2>
+<div class="music-card">
+    <h1 class="music-title">MUSIC • MODE</h1>
 
-    <div id="nowplaying" class="nowplaying">
-        <span id="song">Loading...</span>
+    <!-- animated “currently into” line -->
+    <p class="music-sub" id="music-line">loading…</p>
+
+    <div class="music-section">
+        <h2>ON REPEAT</h2>
+        <ul>
+            <li>Track 1 – Artist</li>
+            <li>Track 2 – Artist</li>
+            <li>Track 3 – Artist</li>
+        </ul>
     </div>
 
-    <div class="back" onclick="window.location.href='index.html'">
-        <i class="fa-solid fa-arrow-left"></i>
+    <div class="music-section">
+        <h2>FAVORITES</h2>
+        <ul>
+            <li>Song that never gets old</li>
+            <li>Late night drive track</li>
+            <li>Gym / rage pick</li>
+        </ul>
+    </div>
+
+    <div class="music-section">
+        <h2>LATE NIGHT</h2>
+        <ul>
+            <li>Midnight vibe 1</li>
+            <li>Midnight vibe 2</li>
+            <li>Midnight vibe 3</li>
+        </ul>
+    </div>
+
+    <div class="music-links">
+        <a href="https://open.spotify.com/user/31byvslempdoe26iyeh5tage6hnu?si=5ccac8d7471b4797"
+           target="_blank">
+            <i class="fab fa-spotify"></i> open spotify
+        </a>
+        <button type="button" onclick="window.location.href='index.html'">
+            <i class="fas fa-arrow-left"></i> back
+        </button>
     </div>
 </div>
 
-<script src="music.js"></script>
+<script>
+const lines = [
+    "currently into: sad boy hours 🎧",
+    "currently into: chill night drives",
+    "currently into: anything with bass",
+    "currently into: old songs that still hit",
+    "currently into: loops on repeat"
+];
+
+const el = document.getElementById("music-line");
+let idx = 0;
+
+function rotateLine(){
+    el.textContent = lines[idx];
+    idx = (idx + 1) % lines.length;
+}
+
+rotateLine();
+setInterval(rotateLine, 4000);
+</script>
+
 </body>
 </html>
