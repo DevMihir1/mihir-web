@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mihir • Profile</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="locked">
+
+<!-- ENTRY -->
+<div id="overlay">
+    <p>CLICK TO ENTER</p>
+</div>
+
+<!-- BG VIDEO -->
+<video id="bg" muted playsinline loop preload="auto" poster="assets/bg.jpg">
+    <source src="assets/bg.mp4" type="video/mp4">
+</video>
+
+<!-- MAIN CARD -->
+<div class="container" id="main">
+    <div class="card">
+
+        <a href="https://cdn.discordapp.com/avatars/1388994680108220506/93bc0672fe6f3a5fced2ab977b6d0b07.png?size=1024" target="_blank">
+            <img src="https://cdn.discordapp.com/avatars/1388994680108220506/93bc0672fe6f3a5fced2ab977b6d0b07.png?size=512" class="pfp">
+        </a>
+
+        <h1 class="username">Mihir</h1>
+        <p id="typewriter" data-text="I Lowkey Love Music."></p>
+
+        <div class="links">
+            <a href="https://www.instagram.com/miimihir/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://open.spotify.com/user/31byvslempdoe26iyeh5tage6hnu?si=5ccac8d7471b4797" target="_blank"><i class="fab fa-spotify"></i></a>
+            <a href="chat.html"><i class="fas fa-comment-dots"></i></a>
+            <a href="music.html"><i class="fa-solid fa-music"></i></a>
+        </div>
+
+        <p class="views"><i class="fas fa-heart"></i> Made by Mihir</p>
+    </div>
+</div>
+
+<!-- MUSIC -->
+<audio id="bg-music" loop>
+    <source src="assets/music.mp3" type="audio/mp3">
+</audio>
+
+<!-- VOLUME -->
+<div id="volume-box">
+    <span id="volume-label">50%</span>
+    <i class="fas fa-volume-down"></i>
+    <input type="range" id="volume-slider" min="0" max="100" value="50">
+    <i class="fas fa-volume-up"></i>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

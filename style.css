@@ -257,3 +257,47 @@ body{
         font-size:0.8rem;
     }
 }
+
+/* ===== LOBBY PAGE ===== */
+
+.lobby {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at center, #0f0f0f, #000);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+.lobby-container {
+  text-align: center;
+}
+
+.lobby-icon {
+  width: 120px;
+  margin-bottom: 30px;
+  animation: float 2s ease-in-out infinite;
+}
+
+.enter-btn {
+  padding: 14px 32px;
+  font-size: 16px;
+  background: #111;
+  color: white;
+  border: 2px solid #444;
+  cursor: pointer;
+  letter-spacing: 2px;
+  transition: 0.2s;
+}
+
+.enter-btn:hover {
+  background: white;
+  color: black;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
