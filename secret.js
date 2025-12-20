@@ -1,5 +1,21 @@
 import { supabase } from "./supabase.js";
 
+const overlay = document.getElementById("overlay");
+const container = document.querySelector(".container");
+const PASSWORD = "1234"; // change this
+
+overlay.onclick = () => {
+  const code = prompt("Enter code:");
+  if (code === PASSWORD) {
+    overlay.style.opacity = "0";
+    setTimeout(() => overlay.remove(), 500);
+    document.body.classList.remove("locked");
+    container.classList.add("visible");
+  } else {
+    alert("Wrong code");
+  }
+};
+
 let currentDevice = "mihir";
 window.setDevice = d => currentDevice = d;
 
