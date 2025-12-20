@@ -2,7 +2,7 @@ import { supabase } from "./supabase.js";
 
 const overlay = document.getElementById("overlay");
 const container = document.querySelector(".container");
-const PASSWORD = "1234"; // change this
+const PASSWORD = "Mihir1"; // change this
 
 overlay.onclick = () => {
   const code = prompt("Enter code:");
