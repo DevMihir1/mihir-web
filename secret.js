@@ -1,5 +1,7 @@
 import { supabase } from "./supabase.js";
 
+/* ================= LOCK ================= */
+
 const overlay = document.getElementById("overlay");
 const container = document.querySelector(".container");
 const PASSWORD = "Mihir1"; // change this
@@ -16,14 +18,35 @@ overlay.onclick = () => {
   }
 };
 
+/* ================= DEVICE ================= */
+
 let currentDevice = "mihir";
-window.setDevice = d => currentDevice = d;
+
+window.setDevice = d => {
+  currentDevice = d;
+
+  document.querySelectorAll(".column").forEach(c => {
+    c.style.outline = "none";
+    c.style.boxShadow = "0 0 35px rgba(0,0,0,0.6)";
+  });
+
+  const col =
+    d === "mihir"
+      ? document.querySelector(".column:nth-child(1)")
+      : document.querySelector(".column:nth-child(2)");
+
+  col.style.outline = "1px solid rgba(255,255,255,.5)";
+  col.style.boxShadow = "0 0 55px rgba(255,255,255,.15)";
+};
+
+/* ================= ELEMENTS ================= */
 
 const fileInput = document.getElementById("fileInput");
 const mihirList = document.getElementById("mihirList");
 const schoolList = document.getElementById("schoolList");
 
-/* Upload file */
+/* ================= UPLOAD ================= */
+
 fileInput.addEventListener("change", async () => {
   const file = fileInput.files[0];
   if (!file) return;
@@ -50,11 +73,10 @@ fileInput.addEventListener("change", async () => {
     url: data.publicUrl,
     device: currentDevice
   });
-
-  loadFiles();
 });
 
-/* Load files */
+/* ================= LOAD FILES ================= */
+
 async function loadFiles() {
   mihirList.innerHTML = "";
   schoolList.innerHTML = "";
@@ -73,43 +95,37 @@ async function loadFiles() {
     const li = document.createElement("li");
     li.innerHTML = `<a href="${f.url}" target="_blank">${f.name}</a>`;
 
-    if (f.device === "mihir") mihirList.appendChild(li);
-    else schoolList.appendChild(li);
+    if (f.device === "mihir") {
+      mihirList.appendChild(li);
+    } else {
+      schoolList.appendChild(li);
+    }
   });
 }
 
-window.setDevice = d => {
-  currentDevice = d;
-  document.querySelectorAll(".column").forEach(c=>c.style.outline="none");
-  if(d==="mihir") document.querySelector(".column:nth-child(1)").style.outline="1px solid rgba(255,255,255,.4)";
-  if(d==="school") document.querySelector(".column:nth-child(2)").style.outline="1px solid rgba(255,255,255,.4)";
+/* ================= MANUAL RELOAD ================= */
+
+window.reloadFiles = async () => {
+  await loadFiles();
 };
 
-window.setDevice = d => {
-  currentDevice = d;
-  document.querySelectorAll(".column").forEach(c=>{
-    c.style.outline = "none";
-    c.style.boxShadow = "0 0 35px rgba(0,0,0,0.6)";
-  });
+/* ================= REALTIME ================= */
 
-  const col = d === "mihir"
-    ? document.querySelector(".column:nth-child(1)")
-    : document.querySelector(".column:nth-child(2)");
+supabase
+  .channel("files-realtime")
+  .on(
+    "postgres_changes",
+    {
+      event: "INSERT",
+      schema: "public",
+      table: "files"
+    },
+    () => {
+      loadFiles();
+    }
+  )
+  .subscribe();
 
-  col.style.outline = "1px solid rgba(255,255,255,.5)";
-  col.style.boxShadow = "0 0 55px rgba(255,255,255,.15)";
-};
-
-const search = document.getElementById("searchInput");
-
-search.addEventListener("input", e => {
-  const q = e.target.value.toLowerCase();
-  document.querySelectorAll(".column li").forEach(li => {
-    li.style.display = li.innerText.toLowerCase().includes(q)
-      ? "block"
-      : "none";
-  });
-});
-
+/* ================= INIT ================= */
 
 loadFiles();
