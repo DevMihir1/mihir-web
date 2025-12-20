@@ -247,6 +247,38 @@ body{
     font-size:0.9rem;
 }
 
+/*school*/
+.columns{
+    display:flex;
+    gap:18px;
+    margin-top:10px;
+}
+
+.column{
+    flex:1;
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:14px;
+    padding:12px;
+    min-height:160px;
+}
+
+.column h3{
+    font-family:"IBM Plex Mono";
+    font-size:.7rem;
+    letter-spacing:3px;
+    opacity:.7;
+    margin-bottom:8px;
+}
+
+/* Mobile fallback */
+@media(max-width:600px){
+    .columns{
+        flex-direction:column;
+    }
+}
+
+
 /* mobile tweak */
 @media(max-width:600px){
     .music-card{

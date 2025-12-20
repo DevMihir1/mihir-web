@@ -78,4 +78,12 @@ async function loadFiles() {
   });
 }
 
+window.setDevice = d => {
+  currentDevice = d;
+  document.querySelectorAll(".column").forEach(c=>c.style.outline="none");
+  if(d==="mihir") document.querySelector(".column:nth-child(1)").style.outline="1px solid rgba(255,255,255,.4)";
+  if(d==="school") document.querySelector(".column:nth-child(2)").style.outline="1px solid rgba(255,255,255,.4)";
+};
+
+
 loadFiles();
