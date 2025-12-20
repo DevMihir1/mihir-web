@@ -85,5 +85,20 @@ window.setDevice = d => {
   if(d==="school") document.querySelector(".column:nth-child(2)").style.outline="1px solid rgba(255,255,255,.4)";
 };
 
+window.setDevice = d => {
+  currentDevice = d;
+  document.querySelectorAll(".column").forEach(c=>{
+    c.style.outline = "none";
+    c.style.boxShadow = "0 0 35px rgba(0,0,0,0.6)";
+  });
+
+  const col = d === "mihir"
+    ? document.querySelector(".column:nth-child(1)")
+    : document.querySelector(".column:nth-child(2)");
+
+  col.style.outline = "1px solid rgba(255,255,255,.5)";
+  col.style.boxShadow = "0 0 55px rgba(255,255,255,.15)";
+};
+
 
 loadFiles();

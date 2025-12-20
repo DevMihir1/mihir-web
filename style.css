@@ -249,34 +249,79 @@ body{
 
 /*school*/
 .columns{
-    display:flex;
-    gap:18px;
-    margin-top:10px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:26px;
+    margin-top:14px;
 }
 
 .column{
-    flex:1;
-    background:rgba(255,255,255,0.04);
-    border:1px solid rgba(255,255,255,0.08);
-    border-radius:14px;
-    padding:12px;
-    min-height:160px;
+    position:relative;
+    background:rgba(0,0,0,0.45);
+    border:1px solid rgba(255,255,255,0.10);
+    border-radius:20px;
+    padding:18px 16px;
+    min-height:260px;
+    box-shadow:0 0 35px rgba(0,0,0,0.6);
+    overflow:hidden;
+}
+
+/* subtle glass shine */
+.column::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        120deg,
+        transparent 30%,
+        rgba(255,255,255,0.06),
+        transparent 70%
+    );
+    pointer-events:none;
 }
 
 .column h3{
     font-family:"IBM Plex Mono";
-    font-size:.7rem;
-    letter-spacing:3px;
-    opacity:.7;
-    margin-bottom:8px;
+    font-size:.8rem;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    opacity:.75;
+    margin-bottom:14px;
 }
 
-/* Mobile fallback */
-@media(max-width:600px){
+/* file list */
+.column ul{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.column li{
+    background:rgba(255,255,255,0.05);
+    padding:8px 10px;
+    border-radius:10px;
+    transition:.2s;
+}
+
+.column li:hover{
+    background:rgba(255,255,255,0.12);
+}
+
+/* links inside files */
+.column a{
+    color:white;
+    text-decoration:none;
+    font-size:.82rem;
+    opacity:.9;
+}
+
+/* mobile */
+@media(max-width:700px){
     .columns{
-        flex-direction:column;
+        grid-template-columns:1fr;
     }
 }
+
 
 
 /* mobile tweak */
