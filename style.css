@@ -248,173 +248,200 @@ body{
 }
 
 /*school*/
-/* =========================
-   VAULT FULLSCREEN UPGRADE
-   ========================= */
+/* ===============================
+   VAULT — FULL APP LAYOUT
+   =============================== */
 
-/* make vault take full screen */
+/* disable center layout ONLY for vault */
+body:has(.container){
+    justify-content:flex-start;
+    align-items:stretch;
+}
+
+/* main container */
 .container{
     width:100vw;
     height:100vh;
+    padding:32px 36px;
     display:flex;
     flex-direction:column;
-    justify-content:flex-start;
-    align-items:stretch;
-    padding:32px;
+    gap:22px;
 }
 
-/* vault title */
-.container .title{
-    font-family:"IBM Plex Mono";
-    letter-spacing:6px;
-    font-size:.9rem;
-    opacity:.85;
-    margin-bottom:14px;
-}
+/* ================= HEADER ================= */
 
-/* top bar */
-.vault-top{
+.vault-header{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:18px;
-    margin-bottom:20px;
 }
 
-/* search bar */
+.vault-title{
+    font-family:"IBM Plex Mono";
+    font-size:.9rem;
+    letter-spacing:6px;
+    opacity:.85;
+}
+
 .vault-search{
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.12);
-    border-radius:999px;
+    width:260px;
     padding:10px 18px;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,.12);
+    background:rgba(255,255,255,.08);
     color:white;
-    width:280px;
     outline:none;
-    font-family:"Inter";
     font-size:.85rem;
 }
 
-/* buttons row */
-.vault-actions{
-    display:flex;
-    gap:12px;
-    align-items:center;
-}
+/* ================= MAIN LAYOUT ================= */
 
-/* BIG columns */
-.columns{
+.vault-main{
     flex:1;
-    width:100%;
-    margin-top:20px;
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:32px;
-}
-
-/* make lists actually visible */
-.column{
+    grid-template-columns:260px 1fr;
+    gap:28px;
     min-height:0;
 }
 
-.column ul{
-    flex:1;
-    overflow-y:auto;
-}
+/* ================= SIDEBAR ================= */
 
-
-/* column upgrade */
-.column{
-    min-height:auto;
-    padding:22px;
-    border-radius:26px;
+.vault-sidebar{
+    background:rgba(0,0,0,.45);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:22px;
+    padding:18px;
     display:flex;
     flex-direction:column;
+    gap:12px;
+    backdrop-filter:blur(18px);
+}
+
+.section-title{
+    font-family:"IBM Plex Mono";
+    font-size:.7rem;
+    letter-spacing:4px;
+    opacity:.6;
+    margin-bottom:4px;
+}
+
+.vault-sidebar button{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.12);
+    color:white;
+    padding:9px 14px;
+    border-radius:999px;
+    cursor:pointer;
+    font-size:.8rem;
+    transition:.25s;
+}
+
+.vault-sidebar button:hover{
+    background:rgba(255,255,255,.18);
+    transform:translateY(-2px);
+}
+
+.vault-sidebar input[type="file"]{
+    margin-top:6px;
+    font-size:.75rem;
+    opacity:.85;
+}
+
+/* ================= FILE PANELS ================= */
+
+.vault-files{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
+    min-height:0;
+}
+
+/* columns */
+.column{
+    background:rgba(0,0,0,.45);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:26px;
+    padding:22px;
+    display:flex;
+    flex-direction:column;
+    min-height:0;
     backdrop-filter:blur(20px);
-    transition:.35s ease;
+    box-shadow:0 0 55px rgba(0,0,0,.6);
+    transition:.3s;
 }
 
 .column:hover{
-    box-shadow:0 0 70px rgba(255,255,255,.12);
+    box-shadow:0 0 75px rgba(255,255,255,.12);
 }
 
-/* column header */
 .column h3{
-    font-size:.9rem;
-    margin-bottom:16px;
+    font-family:"IBM Plex Mono";
+    font-size:.85rem;
+    letter-spacing:4px;
+    opacity:.75;
+    margin-bottom:14px;
 }
 
-/* scrollable file area */
+/* ================= FILE LIST ================= */
+
 .column ul{
+    list-style:none;
     flex:1;
     overflow-y:auto;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
     padding-right:6px;
 }
 
-/* smooth scrollbar */
+/* scrollbar */
 .column ul::-webkit-scrollbar{
     width:6px;
 }
 .column ul::-webkit-scrollbar-thumb{
-    background:rgba(255,255,255,.2);
+    background:rgba(255,255,255,.25);
     border-radius:10px;
 }
 
-/* file item glow */
+/* file item */
 .column li{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.08);
     padding:10px 14px;
-    font-size:.85rem;
-    display:flex;
-    align-items:center;
+    border-radius:14px;
+    font-size:.82rem;
     transition:.25s;
 }
 
 .column li:hover{
-    transform:translateY(-2px);
     background:rgba(255,255,255,.15);
+    transform:translateY(-2px);
 }
 
-/* mobile vault */
-@media(max-width:800px){
-    .columns{
+.column a{
+    color:white;
+    text-decoration:none;
+    opacity:.9;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:block;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+    .vault-main{
         grid-template-columns:1fr;
     }
-    .vault-top{
-        flex-direction:column;
-        align-items:flex-start;
+    .vault-files{
+        grid-template-columns:1fr;
     }
     .vault-search{
         width:100%;
     }
 }
 
-/* =========================
-   FIX VAULT LAYOUT (IMPORTANT)
-   ========================= */
-
-/* stop body centering ONLY for vault */
-body:has(.container){
-    justify-content:flex-start;
-    align-items:stretch;
-}
-
-/* true fullscreen vault */
-.container{
-    width:100vw;
-    height:100vh;
-    padding:32px 40px;
-    display:flex;
-    flex-direction:column;
-}
-
-/* remove card feeling */
-.container > .box{
-    width:100%;
-    max-width:none;
-    background:none;
-    border:none;
-    padding:0;
-    box-shadow:none;
-}
 
 
 

@@ -100,5 +100,16 @@ window.setDevice = d => {
   col.style.boxShadow = "0 0 55px rgba(255,255,255,.15)";
 };
 
+const search = document.getElementById("searchInput");
+
+search.addEventListener("input", e => {
+  const q = e.target.value.toLowerCase();
+  document.querySelectorAll(".column li").forEach(li => {
+    li.style.display = li.innerText.toLowerCase().includes(q)
+      ? "block"
+      : "none";
+  });
+});
+
 
 loadFiles();
