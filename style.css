@@ -248,79 +248,133 @@ body{
 }
 
 /*school*/
-.columns{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:26px;
-    margin-top:14px;
+/* =========================
+   VAULT FULLSCREEN UPGRADE
+   ========================= */
+
+/* make vault take full screen */
+.container{
+    width:100vw;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:stretch;
+    padding:32px;
 }
 
-.column{
-    position:relative;
-    background:rgba(0,0,0,0.45);
-    border:1px solid rgba(255,255,255,0.10);
-    border-radius:20px;
-    padding:18px 16px;
-    min-height:260px;
-    box-shadow:0 0 35px rgba(0,0,0,0.6);
-    overflow:hidden;
-}
-
-/* subtle glass shine */
-.column::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(
-        120deg,
-        transparent 30%,
-        rgba(255,255,255,0.06),
-        transparent 70%
-    );
-    pointer-events:none;
-}
-
-.column h3{
+/* vault title */
+.container .title{
     font-family:"IBM Plex Mono";
-    font-size:.8rem;
-    letter-spacing:4px;
-    text-transform:uppercase;
-    opacity:.75;
+    letter-spacing:6px;
+    font-size:.9rem;
+    opacity:.85;
     margin-bottom:14px;
 }
 
-/* file list */
-.column ul{
+/* top bar */
+.vault-top{
     display:flex;
-    flex-direction:column;
-    gap:8px;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
+    margin-bottom:20px;
 }
 
-.column li{
-    background:rgba(255,255,255,0.05);
-    padding:8px 10px;
+/* search bar */
+.vault-search{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:999px;
+    padding:10px 18px;
+    color:white;
+    width:280px;
+    outline:none;
+    font-family:"Inter";
+    font-size:.85rem;
+}
+
+/* buttons row */
+.vault-actions{
+    display:flex;
+    gap:12px;
+    align-items:center;
+}
+
+/* BIG columns */
+.columns{
+    flex:1;
+    margin-top:0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+}
+
+/* column upgrade */
+.column{
+    min-height:auto;
+    padding:22px;
+    border-radius:26px;
+    display:flex;
+    flex-direction:column;
+    backdrop-filter:blur(20px);
+    transition:.35s ease;
+}
+
+.column:hover{
+    box-shadow:0 0 70px rgba(255,255,255,.12);
+}
+
+/* column header */
+.column h3{
+    font-size:.9rem;
+    margin-bottom:16px;
+}
+
+/* scrollable file area */
+.column ul{
+    flex:1;
+    overflow-y:auto;
+    padding-right:6px;
+}
+
+/* smooth scrollbar */
+.column ul::-webkit-scrollbar{
+    width:6px;
+}
+.column ul::-webkit-scrollbar-thumb{
+    background:rgba(255,255,255,.2);
     border-radius:10px;
-    transition:.2s;
+}
+
+/* file item glow */
+.column li{
+    padding:10px 14px;
+    font-size:.85rem;
+    display:flex;
+    align-items:center;
+    transition:.25s;
 }
 
 .column li:hover{
-    background:rgba(255,255,255,0.12);
+    transform:translateY(-2px);
+    background:rgba(255,255,255,.15);
 }
 
-/* links inside files */
-.column a{
-    color:white;
-    text-decoration:none;
-    font-size:.82rem;
-    opacity:.9;
-}
-
-/* mobile */
-@media(max-width:700px){
+/* mobile vault */
+@media(max-width:800px){
     .columns{
         grid-template-columns:1fr;
     }
+    .vault-top{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+    .vault-search{
+        width:100%;
+    }
 }
+
 
 
 
